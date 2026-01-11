@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Auto Detail | Estética Automotiva</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Cores e Reset */
+        :root {
+            --preto: #0a0a0a;
+            --preto-card: #151515;
+            --vermelho: #e60000;
+            --vermelho-hover: #ff1a1a;
+            --texto: #ffffff;
+            --cinza: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--preto);
+            color: var(--texto);
+        }
+
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--vermelho);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span { color: white; }
+
+        /* Banner Principal */
+        .hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&q=80&w=1600') no-repeat center center/cover;
+            border-bottom: 4px solid var(--vermelho);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            color: var(--vermelho);
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        /* Seção de Produtos */
+        .container {
+            padding: 50px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+
+        .section-title .underline {
+            width: 80px;
+            height: 4px;
+            background: var(--vermelho);
+            margin: 10px auto;
+        }
+
+        .grid-produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* Card do Produto */
+        .card {
+            background: var(--preto-card);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border 0.3s ease;
+            border: 1px solid #222;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--vermelho);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background-color: #333;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .card-price {
+            color: var(--vermelho);
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn-buy {
+            display: block;
+            text-align: center;
+            background: var(--vermelho);
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-buy:hover {
+            background: var(--vermelho-hover);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #000;
+            color: var(--cinza);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">AUTO<span>GLOSS</span></div>
+        <nav style="color: white; font-size: 0.9rem;">
+            BRILHO • PROTEÇÃO • PERFORMANCE
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>ESTÉTICA DE ALTO NÍVEL</h1>
+        <p>PRODUTOS PROFISSIONAIS PARA O SEU CARRO</p>
+    </section>
+
+    <div class="container">
+        <div class="section-title">
+            <h2>Nossa Loja</h2>
+            <div class="underline"></div>
+        </div>
+
+        <div class="grid-produtos">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&q=80&w=500" alt="Cera Premium" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Cera de Carnaúba Dark</h3>
+                    <p style="color: #888; margin-bottom: 10px;">Brilho profundo para carros pretos.</p>
+                    <div class="card-price">R$ 89,90</div>
+                    <a href="SEU_LINK_AQUI" class="btn-buy">COMPRAR AGORA</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1552933171-ffad0993ef0f?auto=format&fit=crop&q=80&w=500" alt="Pretinho" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Selante de Pneus Gloss</h3>
+                    <p style="color: #888; margin-bottom: 10px;">Efeito molhado de longa duração.</p>
+                    <div class="card-price">R$ 45,00</div>
+                    <a href="SEU_LINK_AQUI" class="btn-buy">COMPRAR AGORA</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&q=80&w=500" alt="Shampoo Neutro" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Shampoo pH Neutro 1L</h3>
+                    <p style="color: #888; margin-bottom: 10px;">Limpeza segura sem remover ceras.</p>
+                    <div class="card-price">R$ 59,90</div>
+                    <a href="SEU_LINK_AQUI" class="btn-buy">COMPRAR AGORA</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 AutoGloss Estética Automotiva - Todos os direitos reservados.
+    </footer>
+
+</body>
+</html>
