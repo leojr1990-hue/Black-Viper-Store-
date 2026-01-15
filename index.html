@@ -10,8 +10,8 @@
         :root {
             --bg-color: #0f0f0f;
             --card-bg: #1a1a1a;
-            --primary-red: #d32f2f;      /* Vermelho mais vivo para ação */
-            --accent-green: #00e676;     /* Verde neon para preço */
+            --primary-red: #d32f2f;      
+            --accent-green: #00e676;     
             --text-light: #f5f5f5;
             --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
@@ -106,7 +106,7 @@
         .btn-buy {
             width: 100%;
             padding: 15px;
-            background-color: var(--primary-red); /* Fundo sólido para chamar atenção */
+            background-color: var(--primary-red);
             color: white;
             border: none;
             text-transform: uppercase;
@@ -118,6 +118,7 @@
             align-items: center;
             gap: 10px;
             font-size: 1rem;
+            text-decoration: none; /* Caso use tag A */
         }
         .btn-buy:hover { background-color: #fff; color: #000; }
 
@@ -158,22 +159,19 @@
 
     <footer>
         <div class="logo" style="margin-bottom: 20px; font-size: 1.4rem;">Black<span>Viper</span></div>
-        <p style="color: #666; font-size: 0.9rem;">Atendimento Exclusivo via WhatsApp</p>
+        <p style="color: #666; font-size: 0.9rem;">Compra Segura | Entrega em Todo Brasil</p>
     </footer>
 
     <script>
-        // --- CONFIGURAÇÃO ---
-        // COLOQUE SEU NÚMERO AQUI (com código do país e DDD, apenas números)
-        const whatsappNumber = "5511999999999"; 
-
         // --- BANCO DE DADOS ---
+        // Adicione os links reais de checkout ou página de produto no campo 'link'
         const products = [
-            { id: 1, name: "Jaqueta Bomber Black", desc: "Couro sintético premium, forro térmico.", price: 299.90, img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80" },
-            { id: 2, name: "Sneaker Urban Red", desc: "Sola vulcanizada, design aerodinâmico.", price: 459.90, img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" },
-            { id: 3, name: "Relógio Chrono Green", desc: "À prova d'água 50m, vidro safira.", price: 899.00, img: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=600&q=80" },
-            { id: 4, name: "Óculos Dark Vision", desc: "Proteção UV400, armação acetato.", price: 149.90, img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80" },
-            { id: 5, name: "Kit Streetwear", desc: "Camiseta Oversized + Boné 5Panel.", price: 129.90, img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80" },
-            { id: 6, name: "Mochila Tech Pro", desc: "Compartimento para notebook 15', impermeável.", price: 329.90, img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" },
+            { id: 1, name: "Jaqueta Bomber Black", desc: "Couro sintético premium, forro térmico.", price: 299.90, img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80", link: "https://seusite.com/produto/jaqueta-bomber" },
+            { id: 2, name: "Sneaker Urban Red", desc: "Sola vulcanizada, design aerodinâmico.", price: 459.90, img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80", link: "https://seusite.com/produto/sneaker-urban" },
+            { id: 3, name: "Relógio Chrono Green", desc: "À prova d'água 50m, vidro safira.", price: 899.00, img: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=600&q=80", link: "https://seusite.com/produto/relogio-chrono" },
+            { id: 4, name: "Óculos Dark Vision", desc: "Proteção UV400, armação acetato.", price: 149.90, img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80", link: "https://seusite.com/produto/oculos-dark" },
+            { id: 5, name: "Kit Streetwear", desc: "Camiseta Oversized + Boné 5Panel.", price: 129.90, img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80", link: "https://seusite.com/produto/kit-streetwear" },
+            { id: 6, name: "Mochila Tech Pro", desc: "Compartimento para notebook 15', impermeável.", price: 329.90, img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80", link: "https://seusite.com/produto/mochila-tech" },
         ];
 
         // --- NAVEGAÇÃO ---
@@ -183,18 +181,16 @@
             window.scrollTo(0,0);
         }
 
-        // --- AÇÃO DE COMPRA (WHATSAPP) ---
+        // --- AÇÃO DE COMPRA (REDIRECIONAMENTO DIRETO) ---
         function buyProduct(id) {
             const product = products.find(p => p.id === id);
             
-            // Texto da mensagem (Codificado para URL)
-            const text = `Olá! Gostaria de comprar o produto: *${product.name}* \nPreço: R$ ${product.price.toFixed(2)}.\nComo procedo com o pagamento?`;
-            
-            // Cria o link do WhatsApp API
-            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
-            
-            // Abre em nova aba
-            window.open(url, '_blank');
+            if (product && product.link) {
+                // Redireciona para o link do produto (abre em nova aba)
+                window.open(product.link, '_blank');
+            } else {
+                alert("Link de compra não configurado para este produto.");
+            }
         }
 
         // --- RENDERIZAR ---
@@ -209,7 +205,7 @@
                         <div class="product-desc">${p.desc}</div>
                         <div class="product-price">R$ ${p.price.toFixed(2).replace('.', ',')}</div>
                         <button class="btn-buy" onclick="buyProduct(${p.id})">
-                            <i class="fab fa-whatsapp"></i> Comprar Agora
+                            <i class="fas fa-shopping-cart"></i> Comprar Agora
                         </button>
                     </div>
                 </div>
