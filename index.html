@@ -3,230 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Auto Detail | Estética Automotiva</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>BlackViper | Direct Store</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Cores e Reset */
+        /* --- CONFIGURAÇÕES VISUAIS --- */
         :root {
-            --preto: #0a0a0a;
-            --preto-card: #151515;
-            --vermelho: #e60000;
-            --vermelho-hover: #ff1a1a;
-            --texto: #ffffff;
-            --cinza: #a0a0a0;
+            --bg-color: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --primary-red: #d32f2f;      /* Vermelho mais vivo para ação */
+            --accent-green: #00e676;     /* Verde neon para preço */
+            --text-light: #f5f5f5;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-main); }
+        body { background-color: var(--bg-color); color: var(--text-light); }
 
-        body {
-            background-color: var(--preto);
-            color: var(--texto);
-        }
-
-        /* Cabeçalho */
+        /* HEADER SIMPLIFICADO */
         header {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            background-color: rgba(15, 15, 15, 0.98);
             padding: 20px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-red);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--vermelho);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        .logo { font-size: 1.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
+        .logo span { color: var(--primary-red); }
 
-        .logo span { color: white; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav a { color: var(--text-light); text-decoration: none; font-weight: 500; text-transform: uppercase; font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
+        nav a:hover { color: var(--primary-red); }
 
-        /* Banner Principal */
+        /* LAYOUT */
+        .page-section { padding: 100px 5% 50px 5%; min-height: 100vh; display: none; animation: fadeIn 0.5s ease; }
+        .page-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* HERO */
         .hero {
-            height: 60vh;
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('<img 
-  src="images/produtos-limpeza-automotiva.png" 
-  alt="Produtos de limpeza automotiva" 
-  style="max-width:100%; height:auto;"
->
-') no-repeat center center/cover;
-            border-bottom: 4px solid var(--vermelho);
+            margin-top: -80px;
         }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .hero p {
-            color: var(--vermelho);
+        .hero h1 { font-size: 3rem; text-transform: uppercase; margin-bottom: 20px; }
+        .hero span { color: var(--primary-red); }
+        
+        .btn-cta {
+            padding: 15px 50px;
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            font-size: 1.1rem;
             font-weight: bold;
-            letter-spacing: 3px;
-        }
-
-        /* Seção de Produtos */
-        .container {
-            padding: 50px 5%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title h2 {
-            font-size: 2rem;
             text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 4px;
         }
+        .btn-cta:hover { background-color: #b71c1c; box-shadow: 0 0 25px rgba(211, 47, 47, 0.5); }
 
-        .section-title .underline {
-            width: 80px;
-            height: 4px;
-            background: var(--vermelho);
-            margin: 10px auto;
-        }
-
-        .grid-produtos {
+        /* GRID DE PRODUTOS */
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 2rem; text-transform: uppercase; border-bottom: 2px solid var(--accent-green); display: inline-block; }
+        
+        .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
 
-        /* Card do Produto */
-        .card {
-            background: var(--preto-card);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease, border 0.3s ease;
-            border: 1px solid #222;
+        .product-card {
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
         }
+        .product-card:hover { transform: translateY(-5px); border-color: var(--primary-red); }
 
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--vermelho);
-        }
+        .product-img { height: 300px; overflow: hidden; }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .product-card:hover .product-img img { transform: scale(1.1); }
 
-        .card-img {
-            width: 100%;
-            height: 200px;
-            background-color: #333;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 20px;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .card-price {
-            color: var(--vermelho);
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
+        .product-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; }
+        .product-desc { color: #888; font-size: 0.9rem; margin-bottom: 15px; flex-grow: 1; }
+        
+        .product-price { color: var(--accent-green); font-size: 1.5rem; font-weight: bold; margin-bottom: 20px; }
 
         .btn-buy {
-            display: block;
-            text-align: center;
-            background: var(--vermelho);
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-red); /* Fundo sólido para chamar atenção */
             color: white;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 5px;
+            border: none;
+            text-transform: uppercase;
             font-weight: bold;
-            transition: background 0.3s;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
         }
+        .btn-buy:hover { background-color: #fff; color: #000; }
 
-        .btn-buy:hover {
-            background: var(--vermelho-hover);
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: #000;
-            color: var(--cinza);
-            font-size: 0.9rem;
-        }
+        /* FOOTER */
+        footer { background-color: #050505; padding: 40px 5%; text-align: center; margin-top: 50px; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">AUTO<span>GLOSS</span></div>
-        <nav style="color: white; font-size: 0.9rem;">
-            BRILHO • PROTEÇÃO • PERFORMANCE
+        <div class="logo">Black<span>Viper</span></div>
+        <nav>
+            <ul>
+                <li><a onclick="showPage('home')">Início</a></li>
+                <li><a onclick="showPage('shop')">Catálogo</a></li>
+                <li><a onclick="window.scrollTo(0, document.body.scrollHeight)">Contato</a></li>
+            </ul>
         </nav>
     </header>
 
-    <section class="hero">
-        <h1>ESTÉTICA DE ALTO NÍVEL</h1>
-        <p>PRODUTOS PROFISSIONAIS PARA O SEU CARRO</p>
-    </section>
-
-    <div class="container">
-        <div class="section-title">
-            <h2>Nossa Loja</h2>
-            <div class="underline"></div>
+    <div id="home" class="page-section active">
+        <div class="hero">
+            <h1>Exclusividade <br><span>Imediata</span></h1>
+            <p style="color: #ccc; margin-bottom: 30px;">Edições limitadas. Compra direta.</p>
+            <button class="btn-cta" onclick="showPage('shop')">Ver Ofertas</button>
         </div>
-
-        <div class="grid-produtos">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&q=80&w=500" alt="Cera Premium" class="card-img">
-                <div class="card-content">
-                    <h3 class="card-title">Cera de Carnaúba Dark</h3>
-                    <p style="color: #888; margin-bottom: 10px;">Brilho profundo para carros pretos.</p>
-                    <div class="card-price">R$ 46,81</div>
-                    <a href="https://mercadolivre.com/sec/22D89Jj" class="btn-buy">COMPRAR AGORA</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://pin.it/4J7Cwsgb1" alt="Br
-" class="card-img">
-                <div class="card-content">
-                    <h3 class="card-title">Kit Limpeza Vonix</h3>
-                    <p style="color: #888; margin-bottom: 10px;">.</p>
-       Kit Lavagem shampoo Cera TokFinal Sintra Fat Vonix             <div class="card-price">R$ 165,00</div>
-                    <a href="https://mercadolivre.com/sec/2b8XAPE" class="btn-buy">COMPRAR AGORA</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&q=80&w=500" alt="Shampoo Neutro" class="card-img">
-                <div class="card-content">
-                    <h3 class="card-title">shampoo líquido v floc 500ml vonixx lava auto</h3>
-                    <p style="color: #888; margin-bottom: 10px;">Revitalizador de plásticos.</p>
-                    <div class="card-price">R$ 59,90</div>
-                    <a href="Ihttps://mercadolivre.com/sec/1wzMVwQ" class="btn-buy">COMPRAR AGORA</a>
-                </div>
-            </div>
+        
+        <div style="margin-top: 60px;">
+            <center><h2 class="section-title">Em Alta</h2></center>
+            <div class="products-grid" id="featured-grid"></div>
         </div>
     </div>
 
+    <div id="shop" class="page-section">
+        <center><h2 class="section-title">Todos os Produtos</h2></center>
+        <div class="products-grid" id="shop-grid"></div>
+    </div>
+
     <footer>
-        &copy; 2024 AutoGloss Estética Automotiva - Todos os direitos reservados.
+        <div class="logo" style="margin-bottom: 20px; font-size: 1.4rem;">Black<span>Viper</span></div>
+        <p style="color: #666; font-size: 0.9rem;">Atendimento Exclusivo via WhatsApp</p>
     </footer>
 
+    <script>
+        // --- CONFIGURAÇÃO ---
+        // COLOQUE SEU NÚMERO AQUI (com código do país e DDD, apenas números)
+        const whatsappNumber = "5511999999999"; 
+
+        // --- BANCO DE DADOS ---
+        const products = [
+            { id: 1, name: "Jaqueta Bomber Black", desc: "Couro sintético premium, forro térmico.", price: 299.90, img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80" },
+            { id: 2, name: "Sneaker Urban Red", desc: "Sola vulcanizada, design aerodinâmico.", price: 459.90, img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" },
+            { id: 3, name: "Relógio Chrono Green", desc: "À prova d'água 50m, vidro safira.", price: 899.00, img: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=600&q=80" },
+            { id: 4, name: "Óculos Dark Vision", desc: "Proteção UV400, armação acetato.", price: 149.90, img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80" },
+            { id: 5, name: "Kit Streetwear", desc: "Camiseta Oversized + Boné 5Panel.", price: 129.90, img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80" },
+            { id: 6, name: "Mochila Tech Pro", desc: "Compartimento para notebook 15', impermeável.", price: 329.90, img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" },
+        ];
+
+        // --- NAVEGAÇÃO ---
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        // --- AÇÃO DE COMPRA (WHATSAPP) ---
+        function buyProduct(id) {
+            const product = products.find(p => p.id === id);
+            
+            // Texto da mensagem (Codificado para URL)
+            const text = `Olá! Gostaria de comprar o produto: *${product.name}* \nPreço: R$ ${product.price.toFixed(2)}.\nComo procedo com o pagamento?`;
+            
+            // Cria o link do WhatsApp API
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+            
+            // Abre em nova aba
+            window.open(url, '_blank');
+        }
+
+        // --- RENDERIZAR ---
+        function render() {
+            const html = products.map(p => `
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="${p.img}" alt="${p.name}">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">${p.name}</div>
+                        <div class="product-desc">${p.desc}</div>
+                        <div class="product-price">R$ ${p.price.toFixed(2).replace('.', ',')}</div>
+                        <button class="btn-buy" onclick="buyProduct(${p.id})">
+                            <i class="fab fa-whatsapp"></i> Comprar Agora
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('featured-grid').innerHTML = html;
+            document.getElementById('shop-grid').innerHTML = html;
+        }
+
+        render();
+    </script>
 </body>
 </html>
